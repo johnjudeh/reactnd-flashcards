@@ -2,9 +2,10 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { STACK_ROUTE_NAME_HOME } from './constants/navigation';
+import { STACK_ROUTE_NAME_HOME, STACK_ROUTE_NAME_DECK_DETAIL } from './constants/navigation';
 import StatusBar from './components/StatusBar';
 import BottomTabs from './components/BottomTabs';
+import DeckDetail from './components/DeckDetail';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,14 @@ export default function App() {
                     <Stack.Screen
                         name={STACK_ROUTE_NAME_HOME}
                         component={BottomTabs}
-                        options={{ headerShown: false }}
+                        options={{
+                            title: 'Decks',
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name={STACK_ROUTE_NAME_DECK_DETAIL}
+                        component={DeckDetail}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
