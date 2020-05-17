@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { white } from '../constants/colors';
 
 function NewDeck(props) {

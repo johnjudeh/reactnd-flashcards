@@ -6,10 +6,12 @@ import StatusBar from './components/StatusBar';
 import BottomTabs from './components/BottomTabs';
 import DeckDetail from './components/DeckDetail';
 import NewQuestion from './components/NewQuestion';
+import DeckQuiz from './components/DeckQuiz';
 import {
     STACK_ROUTE_NAME_HOME,
     STACK_ROUTE_NAME_DECK_DETAIL,
-    STACK_ROUTE_NAME_NEW_QUESTION
+    STACK_ROUTE_NAME_NEW_QUESTION,
+    STACK_ROUTE_NAME_QUIZ,
 } from './constants/navigation';
 
 const Stack = createStackNavigator();
@@ -42,6 +44,13 @@ export default function App() {
                         component={NewQuestion}
                         options={{
                             title: 'New Card'
+                        }}
+                    />
+                    <Stack.Screen
+                        name={STACK_ROUTE_NAME_QUIZ}
+                        component={DeckQuiz}
+                        options={{
+                            title: 'Quiz'
                         }}
                     />
                 </Stack.Navigator>

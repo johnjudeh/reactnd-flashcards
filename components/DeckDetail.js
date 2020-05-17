@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { DECKS_DATA } from '../constants/dummyData';
-import { STACK_ROUTE_NAME_NEW_QUESTION } from '../constants/navigation';
+import { STACK_ROUTE_NAME_NEW_QUESTION, STACK_ROUTE_NAME_QUIZ } from '../constants/navigation';
 
 class DeckDetail extends Component {
     render() {
@@ -13,7 +13,11 @@ class DeckDetail extends Component {
             <View>
                 <Text>{title}</Text>
                 <Text>{questions.length} cards</Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate(STACK_ROUTE_NAME_QUIZ);
+                    }}
+                >
                     <Text>Start Quiz</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
