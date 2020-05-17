@@ -2,10 +2,15 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { STACK_ROUTE_NAME_HOME, STACK_ROUTE_NAME_DECK_DETAIL } from './constants/navigation';
 import StatusBar from './components/StatusBar';
 import BottomTabs from './components/BottomTabs';
 import DeckDetail from './components/DeckDetail';
+import NewQuestion from './components/NewQuestion';
+import {
+    STACK_ROUTE_NAME_HOME,
+    STACK_ROUTE_NAME_DECK_DETAIL,
+    STACK_ROUTE_NAME_NEW_QUESTION
+} from './constants/navigation';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +31,18 @@ export default function App() {
                     <Stack.Screen
                         name={STACK_ROUTE_NAME_DECK_DETAIL}
                         component={DeckDetail}
+                        options={({ route }) => ({
+                            // TODO: Change this to be the title rather than id
+                            // once I hook up redux
+                            title: route.params.id
+                        })}
+                    />
+                    <Stack.Screen
+                        name={STACK_ROUTE_NAME_NEW_QUESTION}
+                        component={NewQuestion}
+                        options={{
+                            title: 'New Card'
+                        }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
