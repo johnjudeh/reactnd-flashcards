@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { DECKS_DATA } from '../constants/dummyData';
+import Button from '../components/Button'
 
 // TODO: Change this to use real data
 const question = DECKS_DATA['JavaScript'].questions[0]
@@ -37,12 +38,12 @@ class DeckQuiz extends Component {
                         }
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Incorrect</Text>
-                </TouchableOpacity>
+                <Button>
+                    Correct
+                </Button>
+                <Button>
+                    Incorrect
+                </Button>
             </View>
         );
     }

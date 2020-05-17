@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpacity } from 'react-native';
 import { DECKS_DATA } from '../constants/dummyData';
 import { white } from '../constants/colors';
+import Button from './Button';
 
 class NewQuestion extends Component {
     render() {
@@ -19,9 +20,9 @@ class NewQuestion extends Component {
                     style={styles.textInput}
                     onChangeText={() => console.log('hi')}
                 />
-                <TouchableOpacity>
-                    <Text>Add Card</Text>
-                </TouchableOpacity>
+                <Button>
+                    Add Card
+                </Button>
             </KeyboardAvoidingView>
         );
     }
