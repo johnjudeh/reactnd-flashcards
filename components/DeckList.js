@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     card: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: white,

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { STACK_ROUTE_NAME_NEW_QUESTION, STACK_ROUTE_NAME_QUIZ } from '../constants/navigation';
 import Button from './Button';
-import { connect } from 'react-redux';
+import { grey, transparentBlack, white } from '../constants/colors';
 
 class DeckDetail extends Component {
     render() {
@@ -11,19 +12,63 @@ class DeckDetail extends Component {
         const { title, questions } = deck;
 
         return (
-            <View>
-                <Text>{title}</Text>
-                <Text>{questions.length} cards</Text>
-                <Button onPress={() => navigate(STACK_ROUTE_NAME_QUIZ, { deckId: deck.id })}>
-                    Start Quiz
-                </Button>
-                <Button onPress={() => navigate(STACK_ROUTE_NAME_NEW_QUESTION, { deckId: deck.id })}>
-                    Add Card
-                </Button>
+            <View style={styles.container}>
+                <View style={styles.card}>
+                    <Text style={styles.deckTitle}>{title}</Text>
+                    <Text style={styles.numOfCards}>{questions.length} cards</Text>
+                    <Button onPress={() => navigate(STACK_ROUTE_NAME_QUIZ, { deckId: deck.id })}>
+                        Start Quiz
+                    </Button>
+                    <Button onPress={() => navigate(STACK_ROUTE_NAME_NEW_QUESTION, { deckId: deck.id })}>
+                        Add Card
+                    </Button>
+                </View>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'stretch',
+        padding: 20,
+        backgroundColor: white,
+    },
+    header: {
+        fontSize: 20,
+        alignSelf: 'center',
+        margin: 10,
+    },
+    card: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: white,
+        padding: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        borderRadius: 8,
+        borderStyle: 'solid',
+        borderColor: transparentBlack,
+        borderWidth: 1,
+        shadowRadius: 1,
+        shadowOpacity: 0.4,
+        shadowColor: transparentBlack,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        }
+    },
+    deckTitle: {
+        fontSize: 18,
+    },
+    numOfCards: {
+        fontSize: 14,
+        color: grey,
+        margin: 5,
+        marginBottom: 20,
+    },
+})
 
 function mapStateToProps(decks, { route }) {
     return {
