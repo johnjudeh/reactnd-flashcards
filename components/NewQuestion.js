@@ -15,7 +15,7 @@ class NewQuestion extends Component {
     onInputChange = (key, value) => {
         this.setState({
             [key]: value,
-        })
+        });
     }
 
     onSubmit = () => {
@@ -26,7 +26,7 @@ class NewQuestion extends Component {
         dispatch(handleAddQuestion(deckId, {
             question,
             answer,
-        }))
+        }));
 
         this.setState({
             question: '',
