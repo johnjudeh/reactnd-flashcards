@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { white } from '../constants/colors';
 import Button from './Button';
 import { connect } from 'react-redux';
 import { handleAddDeck } from '../actions';
-import { TAB_ROUTE_NAME_DECKS } from '../constants/navigation';
 
 class NewDeck extends Component {
     state = {
@@ -21,14 +20,11 @@ class NewDeck extends Component {
         const { dispatch, navigation } = this.props;
         const { title } = this.state;
 
-        dispatch(handleAddDeck(title))
+        dispatch(handleAddDeck(title, navigation.navigate))
 
-        // TODO: Make this happen on success only
         this.setState({
             title: ''
         });
-
-        navigation.navigate(TAB_ROUTE_NAME_DECKS);
     }
 
     render() {

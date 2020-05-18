@@ -40,7 +40,7 @@ function StackNavigation({ decks }) {
                     name={STACK_ROUTE_NAME_NEW_QUESTION}
                     component={NewQuestion}
                     options={{
-                        title: 'New Card'
+                        title: 'Add Card'
                     }}
                 />
                 <Stack.Screen

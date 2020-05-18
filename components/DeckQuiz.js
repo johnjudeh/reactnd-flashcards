@@ -49,6 +49,19 @@ class DeckQuiz extends Component {
         const { questions } = this.props;
         const { questionIndex, numCorrect, numIncorrect } = this.state;
 
+        if (questions.length === 0) {
+            return (
+                <View>
+                    <Text>No Cards Added Yet</Text>
+                    <Text>
+                        There are no cards in this deck yet. Add some cards before
+                        starting the quiz.
+                    </Text>
+                </View>
+            );
+
+        }
+
         if (questionIndex === questions.length) {
             return (
                 <View>
@@ -66,7 +79,14 @@ class DeckQuiz extends Component {
         }
 
         const question = questions[questionIndex];
-        return <QuizQuestion question={question} onAnswer={this.onQuestionAnswer} />;
+        return (
+            <QuizQuestion
+                question={question}
+                questionNum={questionIndex + 1}
+                totalQuestions={questions.length}
+                onAnswer={this.onQuestionAnswer}
+            />
+        );
     }
 }
 

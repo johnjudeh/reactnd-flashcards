@@ -1,5 +1,6 @@
 import { formatDeck } from '../utils/helpers';
 import { getDecks, createDeck, addQuestionToDeck } from '../utils/api';
+import { STACK_ROUTE_NAME_DECK_DETAIL, TAB_ROUTE_NAME_DECKS } from '../constants/navigation';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
@@ -35,11 +36,17 @@ export function handleGetDecks() {
     }
 }
 
-export function handleAddDeck(title) {
+export function handleAddDeck(title, navigate) {
     return (dispatch) => {
         const deck = formatDeck(title);
         createDeck(deck)
-            .then(() => dispatch(addDeck(deck)));
+            .then(() => dispatch(addDeck(deck)))
+            .then(() => {
+                // Navigation happens here because it depends on
+                // the deck id which is not known until this point
+                navigate(TAB_ROUTE_NAME_DECKS);
+                navigate(STACK_ROUTE_NAME_DECK_DETAIL, { id: deck.id });
+            });
     }
 }
 

@@ -27,7 +27,13 @@ class BottomTabs extends Component {
                 })}
             >
                 <Tabs.Screen name={TAB_ROUTE_NAME_DECKS} component={DeckList} />
-                <Tabs.Screen name={TAB_ROUTE_NAME_NEW_DECK} component={NewDeck} />
+                <Tabs.Screen
+                    name={TAB_ROUTE_NAME_NEW_DECK}
+                    component={NewDeck}
+                    options={{
+                        title: 'Create Deck'
+                    }}
+                />
             </Tabs.Navigator>
         )
     }

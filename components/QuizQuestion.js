@@ -28,11 +28,12 @@ class QuizQuestion extends Component {
     }
 
     render() {
-        const { question } = this.props;
+        const { question, questionNum, totalQuestions } = this.props;
         const { view } = this.state;
 
         return (
             <View>
+                <Text>Question {questionNum}/{totalQuestions}</Text>
                 <Text>{question[QuizQuestion.QUESTION_KEYS[view]]}</Text>
                 <TouchableOpacity onPress={this.toggleView}>
                     <Text>
