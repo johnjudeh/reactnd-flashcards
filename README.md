@@ -27,6 +27,9 @@ npm install
 npm start
 ```
 
+From there you can run the app on an iOS or Android simulator. However, the app was
+built with iOS in mind as the target OS.
+
 
 ## Backend
 
