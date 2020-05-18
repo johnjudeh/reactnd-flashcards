@@ -1,10 +1,16 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { black, white } from '../constants/colors';
+import { black, white, transparentBlack } from '../constants/colors';
 
-function Button({ children, onPress, style, textStyle }) {
+function Button({ children, style, textStyle, onPress, ...props }) {
     return (
-        <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+        <TouchableOpacity style={
+                props.disabled === true
+                    ? [styles.button, styles.disabled, style]
+                    : [styles.button, style]
+            }
+            {...props}
+        >
             <Text style={[styles.buttonText, textStyle]}>{children}</Text>
         </TouchableOpacity>
     );
@@ -19,6 +25,9 @@ const styles = StyleSheet.create({
         backgroundColor: black,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    disabled: {
+        backgroundColor: transparentBlack,
     },
     buttonText: {
         color: white,

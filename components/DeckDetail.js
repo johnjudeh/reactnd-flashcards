@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { DECKS_DATA } from '../constants/dummyData';
+import { View, Text } from 'react-native';
 import { STACK_ROUTE_NAME_NEW_QUESTION, STACK_ROUTE_NAME_QUIZ } from '../constants/navigation';
 import Button from './Button';
+import { connect } from 'react-redux';
 
 class DeckDetail extends Component {
     render() {
-        const { route, navigation } = this.props;
+        const { deck, navigation } = this.props;
         const { navigate } = navigation;
-        const { id } = route.params;
-        const { title, questions } = DECKS_DATA[id];
+        const { title, questions } = deck;
 
         return (
             <View>
@@ -26,4 +25,10 @@ class DeckDetail extends Component {
     }
 }
 
-export default DeckDetail;
+function mapStateToProps(decks, { route }) {
+    return {
+        deck: decks[route.params.id],
+    }
+}
+
+export default connect(mapStateToProps)(DeckDetail);
