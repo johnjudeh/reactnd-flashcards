@@ -3,24 +3,59 @@ import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpaci
 import { DECKS_DATA } from '../constants/dummyData';
 import { white } from '../constants/colors';
 import Button from './Button';
+import { connect } from 'react-redux';
+import { handleAddQuestion } from '../actions';
 
 class NewQuestion extends Component {
+    state = {
+        question: '',
+        answer: '',
+    }
+
+    onInputChange = (key, value) => {
+        this.setState({
+            [key]: value,
+        })
+    }
+
+    onSubmit = () => {
+        const { dispatch, route, navigation } = this.props;
+        const { deckId } = route.params;
+        const { question, answer } = this.state;
+
+        dispatch(handleAddQuestion(deckId, {
+            question,
+            answer,
+        }))
+
+        this.setState({
+            question: '',
+            answer: '',
+        });
+
+        navigation.goBack();
+    }
+
     render() {
+        const { question, answer } = this.state;
+
         return (
             <KeyboardAvoidingView behavior='padding'>
                 <Text>Question</Text>
                 <TextInput
                     multiline
                     style={styles.textInput}
-                    onChangeText={() => console.log('hi')}
+                    value={question}
+                    onChangeText={(val) => this.onInputChange('question', val)}
                 />
                 <Text>Answer</Text>
                 <TextInput
                     multiline
                     style={styles.textInput}
-                    onChangeText={() => console.log('hi')}
+                    value={answer}
+                    onChangeText={(val) => this.onInputChange('answer', val)}
                 />
-                <Button>
+                <Button onPress={this.onSubmit} disabled={question === '' || answer === ''}>
                     Add Card
                 </Button>
             </KeyboardAvoidingView>
@@ -35,4 +70,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewQuestion;
+export default connect()(NewQuestion);

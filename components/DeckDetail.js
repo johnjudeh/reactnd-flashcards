@@ -17,7 +17,7 @@ class DeckDetail extends Component {
                 <Button onPress={() => navigate(STACK_ROUTE_NAME_QUIZ)}>
                     Start Quiz
                 </Button>
-                <Button onPress={() => navigate(STACK_ROUTE_NAME_NEW_QUESTION)}>
+                <Button onPress={() => navigate(STACK_ROUTE_NAME_NEW_QUESTION, { deckId: deck.id })}>
                     Add Card
                 </Button>
             </View>
