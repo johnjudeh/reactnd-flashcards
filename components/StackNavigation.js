@@ -11,10 +11,11 @@ import {
     STACK_ROUTE_NAME_NEW_QUESTION,
     STACK_ROUTE_NAME_QUIZ,
 } from '../constants/navigation';
+import { connect } from 'react-redux';
 
 const Stack = createStackNavigator();
 
-function StackNavigation(props) {
+function StackNavigation({ decks }) {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName={STACK_ROUTE_NAME_HOME}>
@@ -32,7 +33,7 @@ function StackNavigation(props) {
                     options={({ route }) => ({
                         // TODO: Change this to be the title rather than id
                         // once I hook up redux
-                        title: route.params.id
+                        title: decks[route.params.id].title
                     })}
                 />
                 <Stack.Screen
@@ -54,4 +55,10 @@ function StackNavigation(props) {
     );
 }
 
-export default StackNavigation;
+function mapStateToProps(decks) {
+    return {
+        decks,
+    }
+}
+
+export default connect(mapStateToProps)(StackNavigation);
