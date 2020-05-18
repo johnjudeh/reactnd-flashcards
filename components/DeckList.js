@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { DECKS_DATA } from '../constants/dummyData';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { STACK_ROUTE_NAME_DECK_DETAIL } from '../constants/navigation';
+import { connect } from 'react-redux';
 
 class DeckList extends Component {
     goToDeckDetail = (id) => {
@@ -24,11 +24,13 @@ class DeckList extends Component {
     }
 
     render() {
+        const { decks } = this.props;
+
         return (
             <View>
                 <Text>Deck List</Text>
                 <FlatList
-                    data={Object.values(DECKS_DATA)}
+                    data={Object.values(decks)}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
                 />
@@ -37,4 +39,10 @@ class DeckList extends Component {
     }
 }
 
-export default DeckList;
+function mapStateToProps(decks) {
+    return {
+        decks,
+    }
+}
+
+export default connect(mapStateToProps)(DeckList);
