@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, StyleSheet, TouchableOpacity } from 'react-native';
-import { DECKS_DATA } from '../constants/dummyData';
+import { Text, TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { white } from '../constants/colors';
 import Button from './Button';
 import { connect } from 'react-redux';

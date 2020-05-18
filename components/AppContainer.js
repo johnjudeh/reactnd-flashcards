@@ -3,12 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import StatusBar from './StatusBar';
 import StackNavigation from './StackNavigation';
-import { handleReceiveDecks } from '../actions';
+import { handleGetDecks } from '../actions';
 
 class AppContainer extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(handleReceiveDecks());
+        dispatch(handleGetDecks());
     }
 
     render() {

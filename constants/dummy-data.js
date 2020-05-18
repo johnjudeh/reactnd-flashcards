@@ -1,4 +1,4 @@
-export const DECKS_DATA =  {
+const DECKS_DATA =  {
     React: {
         id: 'React',
         title: 'React',
@@ -24,3 +24,5 @@ export const DECKS_DATA =  {
         ]
     }
 }
+
+export default DECKS_DATA;

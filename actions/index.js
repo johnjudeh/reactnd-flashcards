@@ -1,5 +1,5 @@
 import { formatDeck } from '../utils/helpers';
-import { DECKS_DATA } from '../constants/dummyData';
+import { getDecks, createDeck, addQuestionToDeck } from '../utils/api';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
@@ -27,24 +27,25 @@ function addQuestion(deckId, question) {
     }
 }
 
-export function handleReceiveDecks() {
+export function handleGetDecks() {
     return (dispatch) => {
-        // TODO: Update this once we have AsyncStorage
-        dispatch(receiveDecks(DECKS_DATA));
+        getDecks().then(decks => {
+            dispatch(receiveDecks(decks));
+        })
     }
 }
 
 export function handleAddDeck(title) {
     return (dispatch) => {
-        // TODO: Update this once we have AsyncStorage
         const deck = formatDeck(title);
-        dispatch(addDeck(deck));
+        createDeck(deck)
+            .then(() => dispatch(addDeck(deck)));
     }
 }
 
 export function handleAddQuestion(deckId, question) {
     return (dispatch) => {
-        // TODO: Update this once we have AsyncStorage
-        dispatch(addQuestion(deckId, question));
+        addQuestionToDeck(deckId, question)
+            .then(() => dispatch(addQuestion(deckId, question)));
     }
 }
