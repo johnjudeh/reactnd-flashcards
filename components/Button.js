@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { black, white, transparentBlack } from '../constants/colors';
 
-function Button({ children, style, textStyle, onPress, ...props }) {
+function Button({ children, style, textStyle, ...props }) {
     return (
         <TouchableOpacity style={
                 props.disabled === true
