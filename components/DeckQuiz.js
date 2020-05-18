@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import QuizQuestion from './QuizQuestion';
 import Button from './Button';
+import { clearTodaysRevisionNotification } from '../utils/helpers';
 
 class DeckQuiz extends Component {
     state = {
@@ -12,11 +13,23 @@ class DeckQuiz extends Component {
     }
 
     onQuestionAnswer = (correct) => {
-        this.setState((state) => ({
-            questionIndex: ++state.questionIndex,
-            numCorrect: state.numCorrect + (correct === true ? 1 : 0),
-            numIncorrect: state.numIncorrect + (correct === true ? 0 : 1),
-        }))
+        const { questions } = this.props;
+
+        this.setState((state) => {
+            const { questionIndex } = state;
+
+            if (questionIndex === (questions.length - 1)) {
+                // Achieved your revision goals for today as you
+                // completed a Quiz
+                clearTodaysRevisionNotification();
+            }
+
+            return {
+                questionIndex: questionIndex + 1,
+                numCorrect: state.numCorrect + (correct === true ? 1 : 0),
+                numIncorrect: state.numIncorrect + (correct === true ? 0 : 1),
+            };
+        });
     }
 
     restartQuiz = () => {

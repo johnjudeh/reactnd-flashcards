@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import StatusBar from './StatusBar';
 import StackNavigation from './StackNavigation';
 import { handleGetDecks } from '../actions';
+import { scheduleLocalRevisionNotifications } from '../utils/helpers';
 
 class AppContainer extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(handleGetDecks());
+        scheduleLocalRevisionNotifications();
     }
 
     render() {
