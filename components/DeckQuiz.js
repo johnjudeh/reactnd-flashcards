@@ -1,52 +1,66 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { DECKS_DATA } from '../constants/dummyData';
-import Button from '../components/Button'
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import QuizQuestion from './QuizQuestion';
+import Button from './Button';
 
-// TODO: Change this to use real data
-const question = DECKS_DATA['JavaScript'].questions[0]
-
-// TODO: Break out into DeckQuiz and QuizQuesion components
 class DeckQuiz extends Component {
-    static VIEW_QUESTION = 0
-    static VIEW_ANSWER = 1
-    static QUESTION_KEYS = ['question', 'answer']
-
     state = {
-        view: 0
+        questionIndex: 0,
+        numCorrect: 0,
+        numIncorrect: 0,
     }
 
-    toggleView = () => {
-        this.setState(state => ({
-            view: state.view === DeckQuiz.VIEW_QUESTION
-                ? DeckQuiz.VIEW_ANSWER
-                : DeckQuiz.VIEW_QUESTION,
+    onQuestionAnswer = (correct) => {
+        this.setState((state) => ({
+            questionIndex: ++state.questionIndex,
+            numCorrect: state.numCorrect + (correct === true ? 1 : 0),
+            numIncorrect: state.numIncorrect + (correct === true ? 0 : 1),
         }))
     }
 
-    render() {
-        const { view } = this.state;
+    restartQuiz = () => {
+        this.setState({
+            questionIndex: 0,
+            numCorrect: 0,
+            numIncorrect: 0,
+        })
+    }
 
-        return (
-            <View>
-                <Text>{question[DeckQuiz.QUESTION_KEYS[view]]}</Text>
-                <TouchableOpacity onPress={this.toggleView}>
-                    <Text>
-                        {view === DeckQuiz.VIEW_QUESTION
-                            ? 'Show Answer'
-                            : 'Show Question'
-                        }
-                    </Text>
-                </TouchableOpacity>
-                <Button>
-                    Correct
-                </Button>
-                <Button>
-                    Incorrect
-                </Button>
-            </View>
-        );
+    backToDeck = () => {
+        const { navigation } = this.props;
+        navigation.goBack();
+    }
+
+    render() {
+        const { questions } = this.props;
+        const { questionIndex, numCorrect, numIncorrect } = this.state;
+
+        if (questionIndex === questions.length) {
+            return (
+                <View>
+                    <Text>Quiz complete!</Text>
+                    <Text>{Math.round(numCorrect * 100 / (numCorrect + numIncorrect))}%</Text>
+                    <Text>{numCorrect}/{numCorrect + numIncorrect} correct</Text>
+                    <Button onPress={this.restartQuiz}>
+                        Restart Quiz
+                    </Button>
+                    <Button onPress={this.backToDeck}>
+                        Back to Deck
+                    </Button>
+                </View>
+            );
+        }
+
+        const question = questions[questionIndex];
+        return <QuizQuestion question={question} onAnswer={this.onQuestionAnswer} />;
     }
 }
 
-export default DeckQuiz;
+function mapStateToProps(decks, { route }) {
+    return {
+        questions: decks[route.params.deckId].questions,
+    }
+}
+
+export default connect(mapStateToProps)(DeckQuiz);
