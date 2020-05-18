@@ -5,6 +5,7 @@ import StatusBar from './StatusBar';
 import StackNavigation from './StackNavigation';
 import { handleGetDecks } from '../actions';
 import { scheduleLocalRevisionNotifications } from '../utils/helpers';
+import { white } from '../constants/colors';
 
 class AppContainer extends Component {
     componentDidMount() {
@@ -26,6 +27,7 @@ class AppContainer extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: white,
     },
 });
 

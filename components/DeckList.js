@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { STACK_ROUTE_NAME_DECK_DETAIL } from '../constants/navigation';
 import { connect } from 'react-redux';
+import { grey, transparentBlack, white } from '../constants/colors';
 
 class DeckList extends Component {
     goToDeckDetail = (id) => {
@@ -14,12 +15,13 @@ class DeckList extends Component {
         const { id, title, questions } = item;
 
         return (
-            <View>
-                <TouchableOpacity onPress={() => this.goToDeckDetail(id)}>
-                    <Text>{title}</Text>
-                    <Text>{questions.length} cards</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+                style={styles.card}
+                onPress={() => this.goToDeckDetail(id)}
+            >
+                <Text style={styles.deckTitle}>{title}</Text>
+                <Text style={styles.numOfCards}>{questions.length} cards</Text>
+            </TouchableOpacity>
         );
     }
 
@@ -27,8 +29,8 @@ class DeckList extends Component {
         const { decks } = this.props;
 
         return (
-            <View>
-                <Text>Deck List</Text>
+            <View style={styles.container}>
+                <Text style={styles.header}>Deck List</Text>
                 <FlatList
                     data={Object.values(decks)}
                     renderItem={this.renderItem}
@@ -38,6 +40,49 @@ class DeckList extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        padding: 20,
+        backgroundColor: white,
+    },
+    header: {
+        fontSize: 20,
+        alignSelf: 'center',
+        margin: 10,
+    },
+    card: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: white,
+        padding: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        borderRadius: 8,
+        borderStyle: 'solid',
+        borderColor: transparentBlack,
+        borderWidth: 1,
+        shadowRadius: 1,
+        shadowOpacity: 0.4,
+        shadowColor: transparentBlack,
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        }
+    },
+    deckTitle: {
+        fontSize: 18,
+    },
+    numOfCards: {
+        fontSize: 14,
+        color: grey,
+        paddingTop: 5,
+    }
+})
 
 function mapStateToProps(decks) {
     return {
