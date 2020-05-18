@@ -28,7 +28,8 @@ npm start
 ```
 
 From there you can run the app on an iOS or Android simulator. However, the app was
-built with iOS in mind as the target OS.
+built with iOS in mind as the target OS. The app has been tested on both simulators and
+on an iOS device.
 
 
 ## Backend
