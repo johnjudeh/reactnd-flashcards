@@ -35,11 +35,6 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: white,
     },
-    header: {
-        fontSize: 20,
-        alignSelf: 'center',
-        margin: 10,
-    },
     card: {
         justifyContent: 'center',
         alignItems: 'center',

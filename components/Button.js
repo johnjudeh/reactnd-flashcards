@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { black, white, transparentBlack } from '../constants/colors';
+import { black, white, transparentBlack, darkBlue } from '../constants/colors';
 
 function Button({ children, style, textStyle, ...props }) {
     return (
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         width: 200,
         margin: 10,
         borderRadius: 7,
-        backgroundColor: black,
+        backgroundColor: darkBlue,
         justifyContent: 'center',
         alignItems: 'center',
     },

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Button from '../components/Button'
+import Button from '../components/Button';
+import { white, grey, orange, lightBlue } from '../constants/colors';
 
 class QuizQuestion extends Component {
     static VIEW_QUESTION = 0
@@ -32,11 +33,15 @@ class QuizQuestion extends Component {
         const { view } = this.state;
 
         return (
-            <View>
-                <Text>Question {questionNum}/{totalQuestions}</Text>
-                <Text>{question[QuizQuestion.QUESTION_KEYS[view]]}</Text>
+            <View style={styles.container}>
+                <Text style={styles.header}>
+                    Question {questionNum}/{totalQuestions}
+                </Text>
+                <Text style={styles.question}>
+                    {question[QuizQuestion.QUESTION_KEYS[view]]}
+                </Text>
                 <TouchableOpacity onPress={this.toggleView}>
-                    <Text>
+                    <Text style={styles.textButton}>
                         {view === QuizQuestion.VIEW_QUESTION
                             ? 'Show Answer'
                             : 'Show Question'
@@ -46,12 +51,39 @@ class QuizQuestion extends Component {
                 <Button onPress={() => this.onQuestionAnswer(true)}>
                     Correct
                 </Button>
-                <Button onPress={() => this.onQuestionAnswer(false)}>
+                <Button style={styles.btnIncorrect} onPress={() => this.onQuestionAnswer(false)}>
                     Incorrect
                 </Button>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        padding: 20,
+        backgroundColor: white,
+    },
+    header: {
+        fontSize: 18,
+        color: grey,
+    },
+    question: {
+        fontSize: 32,
+        marginTop: 20,
+        marginBottom: 20,
+        textAlign: 'center'
+    },
+    textButton: {
+        fontSize: 18,
+        marginBottom: 50,
+        color: lightBlue,
+    },
+    btnIncorrect: {
+        backgroundColor: orange,
+    },
+});
 
 export default QuizQuestion;
