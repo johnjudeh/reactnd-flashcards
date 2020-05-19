@@ -53,7 +53,7 @@ class DeckQuiz extends Component {
         if (questions.length === 0) {
             return (
                 <View style={styles.container}>
-                    <Text>No Cards Added Yet</Text>
+                    <Text style={styles.header}>No Cards Added Yet</Text>
                     <Text>
                         There are no cards in this deck yet. Add some cards before
                         starting the quiz.
@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
         backgroundColor: white,
     },
     header: {
-        fontSize: 24,
+        fontSize: 20,
+        marginBottom: 10,
     },
     score: {
         fontSize: 50,
