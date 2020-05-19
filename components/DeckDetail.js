@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { STACK_ROUTE_NAME_NEW_QUESTION, STACK_ROUTE_NAME_QUIZ } from '../constants/navigation';
 import Button from './Button';
-import { grey, transparentBlack, white } from '../constants/colors';
+import { grey, transparentBlue, white } from '../constants/colors';
 
 class DeckDetail extends Component {
     render() {
@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 8,
         borderStyle: 'solid',
-        borderColor: transparentBlack,
+        borderColor: transparentBlue,
         borderWidth: 1,
         shadowRadius: 1,
         shadowOpacity: 0.4,
-        shadowColor: transparentBlack,
+        shadowColor: transparentBlue,
         shadowOffset: {
             width: 0,
             height: 3,

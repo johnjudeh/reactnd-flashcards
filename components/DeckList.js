@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { STACK_ROUTE_NAME_DECK_DETAIL } from '../constants/navigation';
 import { connect } from 'react-redux';
-import { grey, transparentBlack, white } from '../constants/colors';
+import { grey, transparentBlue, white } from '../constants/colors';
 
 class DeckList extends Component {
     goToDeckDetail = (id) => {
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 8,
         borderStyle: 'solid',
-        borderColor: transparentBlack,
+        borderColor: transparentBlue,
         borderWidth: 1,
         shadowRadius: 1,
         shadowOpacity: 0.4,
-        shadowColor: transparentBlack,
+        shadowColor: transparentBlue,
         shadowOffset: {
             width: 0,
             height: 3,
