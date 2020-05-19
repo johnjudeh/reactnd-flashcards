@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native';
 import { transparentBlue, white } from '../constants/colors';
 import Button from './Button';
 import { connect } from 'react-redux';
@@ -31,7 +31,7 @@ class NewDeck extends Component {
         const { title } = this.state;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
                 <Text style={styles.header}>New Deck</Text>
                 <TextInput
                     style={styles.textInput}
@@ -42,7 +42,7 @@ class NewDeck extends Component {
                 <Button style={styles.btn} onPress={this.onSubmit} disabled={title === ''}>
                     Create Deck
                 </Button>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import { white } from '../constants/colors';
+import { TextInput, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { white, transparentBlue } from '../constants/colors';
 import Button from './Button';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions';
@@ -39,22 +39,26 @@ class NewQuestion extends Component {
         const { question, answer } = this.state;
 
         return (
-            <KeyboardAvoidingView behavior='padding'>
-                <Text>Question</Text>
+            <KeyboardAvoidingView style={styles.container} behavior='padding'>
                 <TextInput
                     multiline
                     style={styles.textInput}
                     value={question}
+                    placeholder='Question'
                     onChangeText={(val) => this.onInputChange('question', val)}
                 />
-                <Text>Answer</Text>
                 <TextInput
                     multiline
                     style={styles.textInput}
                     value={answer}
+                    placeholder='Answer'
                     onChangeText={(val) => this.onInputChange('answer', val)}
                 />
-                <Button onPress={this.onSubmit} disabled={question === '' || answer === ''}>
+                <Button
+                    style={styles.btn}
+                    onPress={this.onSubmit}
+                    disabled={question === '' || answer === ''}
+                >
                     Add Card
                 </Button>
             </KeyboardAvoidingView>
@@ -63,9 +67,25 @@ class NewQuestion extends Component {
 }
 
 const styles = StyleSheet.create({
-    textInput: {
-        height: 40,
+    container: {
+        flex: 1,
+        alignItems: 'stretch',
+        padding: 20,
         backgroundColor: white,
+    },
+    textInput: {
+        height: 100,
+        padding: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: white,
+        borderRadius: 8,
+        borderStyle: 'solid',
+        borderColor: transparentBlue,
+        borderWidth: 1,
+    },
+    btn: {
+        alignSelf: 'center',
     }
 })
 
