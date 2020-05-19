@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { black, white, transparentBlack, darkBlue } from '../constants/colors';
+import { black, white, transparentBlue, darkBlue } from '../constants/colors';
 
 function Button({ children, style, textStyle, ...props }) {
     return (
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     disabled: {
-        backgroundColor: transparentBlack,
+        backgroundColor: transparentBlue,
     },
     buttonText: {
         color: white,
